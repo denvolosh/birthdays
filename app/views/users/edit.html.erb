@@ -1,0 +1,25 @@
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="span6 offset3 text-center">
+    <%= simple_form_for @user, :html => {multipart: true , class:  'form-control' } do |f| %>
+
+        <%= f.error_notification %>
+       
+        <%= f.input :first_name %>
+       
+        <%= f.input :last_name %>
+      
+        <%= f.date_select :birthdate, {:prompt => { :day => 'Day', :month => 'Month', :year => 'Year' }, :start_year => 1960, :end_year => Date.today.year},  {:class => 'span2'} %>
+     
+        <%= f.input :email %>
+
+        <%= image_tag(@user.avatar_url) if @user.avatar? %>
+        <%= f.file_field :avatar %>
+        <%= f.hidden_field :avatar_cache %>
+
+        <div><%= f.submit "Save changes", class: "btn btn-custom" %></div>
+
+    <% end %>
+  </div>
+</div>
